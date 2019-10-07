@@ -1,7 +1,6 @@
 package customer.service.representative.toolbox.payment.framework.helpers.testdata;
 
 
-import customer.service.representative.toolbox.payment.domain.Invoice.InvoiceId;
 import customer.service.representative.toolbox.payment.domain.Invoice;
 import customer.service.representative.toolbox.payment.domain.Money;
 import customer.service.representative.toolbox.payment.domain.Payment;
@@ -14,7 +13,7 @@ public class PaymentTestData {
 
         private PaymentId paymentId;
         private Money money;
-        private InvoiceId invoiceId;
+        private Invoice invoice;
 
         public PaymentBuilder withPaymentId(PaymentId paymentId) {
             this.paymentId = paymentId;
@@ -26,13 +25,13 @@ public class PaymentTestData {
             return this;
         }
 
-        public PaymentBuilder withInvoice(InvoiceId InvoiceId) {
-            this.invoiceId = invoiceId;
+        public PaymentBuilder withInvoice(Invoice InvoiceId) {
+            this.invoice = invoice;
             return this;
         }
 
         public Payment build() {
-            return Payment.withId(this.paymentId, this.money, this.invoiceId);
+            return Payment.withId(this.paymentId, this.money, this.invoice);
         }
 
     }

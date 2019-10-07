@@ -22,7 +22,7 @@ public class Payment {
 
     @Getter private final Money money;
 
-    @Getter private final Invoice.InvoiceId invoiceId;
+    @Getter private final Invoice invoice;
 
 
     /**
@@ -31,8 +31,8 @@ public class Payment {
      */
     public static Payment withoutId(
             Money money,
-            Invoice.InvoiceId invoiceId) {
-        return new Payment(null, money, invoiceId);
+            Invoice invoice) {
+        return new Payment(null, money, invoice);
     }
 
     /**
@@ -41,19 +41,20 @@ public class Payment {
     public static Payment withId(
             PaymentId paymentId,
             Money money,
-            Invoice.InvoiceId invoiceId) {
-        return new Payment(paymentId, money, invoiceId);
+            Invoice invoice) {
+        return new Payment(paymentId, money, invoice);
     }
 
-
+    //Businesss logic
     public boolean makePayment() {
-        if (!mayPay(this.invoiceId)) {
+        if (!mayPay()) {
             return false;
         }
         return true;
     }
 
-    private boolean mayPay(Invoice.InvoiceId invoiceId) {
+    //Businesss logic
+    public boolean mayPay() {
         /* Has enough money to pay the invoice */
         return true;
     }

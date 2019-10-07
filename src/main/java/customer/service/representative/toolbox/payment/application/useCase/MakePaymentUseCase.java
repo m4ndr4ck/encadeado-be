@@ -1,6 +1,6 @@
-package customer.service.representative.toolbox.payment.application.useCases;
+package customer.service.representative.toolbox.payment.application.useCase;
 
-import customer.service.representative.toolbox.payment.domain.Invoice.InvoiceId;
+import customer.service.representative.toolbox.payment.domain.Invoice;
 import customer.service.representative.toolbox.payment.domain.Money;
 import customer.service.representative.toolbox.payment.framework.helpers.common.SelfValidating;
 import lombok.EqualsAndHashCode;
@@ -13,21 +13,19 @@ public interface MakePaymentUseCase {
     boolean makePayment(MakePaymentCommand command);
 
     @Value
-
     @EqualsAndHashCode(callSuper = false)
     class MakePaymentCommand  extends SelfValidating<MakePaymentCommand> {
 
-
         @NotNull
-        private final InvoiceId invoiceId;
+        private final Invoice invoice;
 
         @NotNull
         private final Money money;
 
         public MakePaymentCommand(
-                InvoiceId invoiceId,
+                Invoice invoice,
                 Money money) {
-            this.invoiceId = invoiceId;
+            this.invoice = invoice;
             this.money = money;
             this.validateSelf();
         }

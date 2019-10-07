@@ -1,5 +1,6 @@
 package customer.service.representative.toolbox.payment.framework.adapters.out.persistence;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -14,14 +15,16 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PaymentJpaEntity {
+class PaymentJpaEntity {
 
     @Id
     @GeneratedValue
     private Long id;
 
-    private Long invoiceId;
+    @Column
+    private Long invoice;
 
+    @Column
     private Long money;
 
 }

@@ -1,8 +1,7 @@
 package customer.service.representative.toolbox.payment.framework.adapters.in.rest;
 
-
-import customer.service.representative.toolbox.payment.application.useCases.MakePaymentUseCase;
-import customer.service.representative.toolbox.payment.application.useCases.MakePaymentUseCase.MakePaymentCommand;
+import customer.service.representative.toolbox.payment.application.useCase.MakePaymentUseCase;
+import customer.service.representative.toolbox.payment.application.useCase.MakePaymentUseCase.MakePaymentCommand;
 import customer.service.representative.toolbox.payment.domain.Invoice;
 
 import customer.service.representative.toolbox.payment.domain.Money;
@@ -20,10 +19,10 @@ public class MakePaymentAdapter {
     @GetMapping(path = "/customer/service/representative/toolbox/payment/{money}/{invoiceId}")
     void makePayment(
             @PathVariable("money") Long money,
-            @PathVariable("invoiceId") Invoice.InvoiceId invoiceId) {
+            @PathVariable("invoiceId") Long invoiceId) {
 
         MakePaymentCommand command = new MakePaymentCommand(
-                invoiceId,
+                Invoice.withId(invoiceId),
                 Money.of(money));
 
         makePaymentUseCase.makePayment(command);
